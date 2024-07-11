@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   FormBuilder,
   FormControl,
@@ -12,6 +13,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from './auth.service';
+import { Login_i } from './auth.interface';
+import { AuthStore } from './auth.store';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -24,13 +30,21 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatProgressBarModule,
+    NgIf,
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  isLoading = false;
   isPasswordHide = true;
+  authStore = inject(AuthStore);
 
   loginForm!: FormGroup<{
     email: FormControl<string | null>;
@@ -56,7 +70,19 @@ export class AuthComponent {
   }
 
   onLoginSubmit() {
-    console.log(this.loginForm.value, 'onLoginSubmit');
+    this.loginForm.disable();
+    this.isLoading = true;
+    this.authService.login(this.loginForm.value as Login_i).subscribe({
+      next: (data) => {
+        localStorage.setItem('user', JSON.stringify(data));
+        this.authStore.init(data);
+        this.router.navigate(['resume']);
+      },
+      complete: () => {
+        this.loginForm.enable();
+        this.isLoading = false;
+      },
+    });
   }
 
   onRegisterSubmit() {

@@ -5,3 +5,42 @@
 mat-toolbar {
   text-transform: capitalize;
 }
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+mat-nav-list {
+  padding-top: 0;
+  a {
+    text-transform: capitalize;
+  }
+}
+
+// mat-toolbar {
+//   .example-spacer {
+//     flex: 1 1 auto;
+//   }
+//   .erp-brand {
+//     text-decoration: none;
+//     font-size: x-large;
+//     letter-spacing: 2px;
+//     text-transform: uppercase;
+//   }
+//   .erp-toolbar-link {
+//     text-transform: capitalize;
+//     margin-right: 5px;
+//   }
+//   .erp-row-2 {
+//     span {
+//       letter-spacing: 2px;
+//       text-transform: capitalize;
+//     }
+//   }
+// }
