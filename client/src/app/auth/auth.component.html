@@ -1,0 +1,86 @@
+<mat-card class="main-card">
+  <mat-card-content>
+    <mat-tab-group>
+      <!-- login -->
+      <mat-tab label="Login">
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+          <mat-form-field>
+            <mat-label>email</mat-label>
+            <input type="email" matInput formControlName="email" />
+            <mat-error>invalid email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>password</mat-label>
+            <input
+              matInput
+              [type]="isPasswordHide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            @if (loginForm.get('password')?.invalid) {
+            <mat-error>
+              {{ loginForm.get('password')?.errors?.['unauthorized'] || 'please provide a valid value' }}
+            </mat-error>
+            }
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="isPasswordHide = !isPasswordHide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="isPasswordHide"
+            >
+              <mat-icon>{{
+                isPasswordHide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <button type="submit" mat-button>submit</button>
+          </mat-card-actions>
+        </form>
+      </mat-tab>
+      <!-- login -->
+
+      <!-- register -->
+      <mat-tab label="Register">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+          <mat-form-field>
+            <mat-label>name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error>invalid value</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>email</mat-label>
+            <input type="email" matInput formControlName="email" />
+            <mat-error>invalid email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>password</mat-label>
+            <input
+              matInput
+              [type]="isPasswordHide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <mat-error> invalid value </mat-error>
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="isPasswordHide = !isPasswordHide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="isPasswordHide"
+            >
+              <mat-icon>{{
+                isPasswordHide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <button type="submit" mat-button>submit</button>
+          </mat-card-actions>
+        </form>
+      </mat-tab>
+      <!-- register -->
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
