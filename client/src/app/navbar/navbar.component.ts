@@ -3,16 +3,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { AuthStore } from '../auth/auth.store';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, RouterLink],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    RouterLink,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
   constructor(private router: Router) {}
   authStore = inject(AuthStore);
+  isOpen = true;
 
   onLogout() {
     localStorage.removeItem('user');

@@ -1,9 +1,32 @@
-<mat-toolbar>
-  <span>d' online resume</span>
-  <span class="example-spacer"></span>
-  @if (authStore.access_token()) {
-  <button mat-button (click)="onLogout()">logout</button>
-  } @else {
-  <button mat-button routerLink="/auth">auth</button>
-  }
+<mat-toolbar role="toolbar" color="primary">
+  <mat-toolbar-row class="mat-elevation-z8">
+    <button mat-icon-button (click)="isOpen = !isOpen">
+      @if (isOpen) {
+      <mat-icon>close</mat-icon>
+      } @else {
+      <mat-icon>menu</mat-icon>
+      }
+    </button>
+    <span>d' online resume</span>
+    <span class="example-spacer"></span>
+    @if (authStore.access_token()) {
+    <button mat-button (click)="onLogout()">logout</button>
+    } @else {
+    <button mat-button routerLink="/auth">auth</button>
+    }
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span>Second Line</span>
+  </mat-toolbar-row>
 </mat-toolbar>
+<mat-sidenav-container autosize>
+  <mat-sidenav #drawer role="navigation" [opened]="isOpen" mode="side">
+    <mat-nav-list>
+      <a mat-list-item href="...">resumes</a>
+      <a mat-list-item href="...">users</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content select="main" />
+  </mat-sidenav-content>
+</mat-sidenav-container>
