@@ -6,6 +6,7 @@ import { AuthStore } from '../auth/auth.store';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    NgIf,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

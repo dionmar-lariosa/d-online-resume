@@ -1,6 +1,10 @@
 <mat-toolbar role="toolbar" color="primary">
   <mat-toolbar-row class="mat-elevation-z8">
-    <button mat-icon-button (click)="isOpen = !isOpen">
+    <button
+      *ngIf="authStore.access_token()"
+      mat-icon-button
+      (click)="isOpen = !isOpen"
+    >
       @if (isOpen) {
       <mat-icon>close</mat-icon>
       } @else {
@@ -20,7 +24,13 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container autosize>
-  <mat-sidenav #drawer role="navigation" [opened]="isOpen" mode="side">
+  <mat-sidenav
+    *ngIf="authStore.access_token()"
+    #drawer
+    role="navigation"
+    [opened]="isOpen"
+    mode="side"
+  >
     <mat-nav-list>
       <a mat-list-item href="...">resumes</a>
       <a mat-list-item href="...">users</a>
