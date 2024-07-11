@@ -36,9 +36,20 @@ export class AuthComponent {
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
+  registerForm!: FormGroup<{
+    name: FormControl<string | null>;
+    email: FormControl<string | null>;
+    password: FormControl<string | null>;
+  }>;
 
   ngOnInit() {
     this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -46,5 +57,9 @@ export class AuthComponent {
 
   onLoginSubmit() {
     console.log(this.loginForm.value, 'onLoginSubmit');
+  }
+
+  onRegisterSubmit() {
+    console.log(this.registerForm.value, 'onRegisterSubmit');
   }
 }
