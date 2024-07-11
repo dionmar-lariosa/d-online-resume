@@ -1,4 +1,5 @@
 <mat-card class="main-card">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate" />
   <mat-card-content>
     <mat-tab-group>
       <!-- login -->
@@ -35,7 +36,13 @@
             </button>
           </mat-form-field>
           <mat-card-actions align="end">
-            <button type="submit" mat-button>submit</button>
+            <button
+              type="submit"
+              mat-button
+              [disabled]="isLoading || loginForm.invalid"
+            >
+              submit
+            </button>
           </mat-card-actions>
         </form>
       </mat-tab>
