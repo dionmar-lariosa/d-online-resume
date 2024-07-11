@@ -74,6 +74,7 @@ export class AuthComponent {
     this.isLoading = true;
     this.authService.login(this.loginForm.value as Login_i).subscribe({
       next: (data) => {
+        localStorage.setItem('user', JSON.stringify(data));
         this.authStore.init(data);
         this.router.navigate(['dashboard']);
       },

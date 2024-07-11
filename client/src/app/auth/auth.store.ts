@@ -17,5 +17,11 @@ export const AuthStore = signalStore(
     init(data: TokenPayload_i) {
       patchState(store, () => ({ ...data }));
     },
+    logout() {
+      patchState(store, (state) => ({
+        ...state,
+        ...initialState,
+      }));
+    },
   }))
 );
