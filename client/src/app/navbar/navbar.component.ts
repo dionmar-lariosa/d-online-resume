@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +20,7 @@ import { NgIf } from '@angular/common';
     MatListModule,
     MatIconModule,
     NgIf,
+    MatMenuModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

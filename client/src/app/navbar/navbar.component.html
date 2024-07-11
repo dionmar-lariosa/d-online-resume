@@ -14,7 +14,10 @@
     <span>d' online resume</span>
     <span class="example-spacer"></span>
     @if (authStore.access_token()) {
-    <button mat-button (click)="onLogout()">logout</button>
+    <button mat-fab extended [matMenuTriggerFor]="personMenu">
+      <mat-icon>person</mat-icon>
+      {{ authStore.name() }}
+    </button>
     } @else {
     <button mat-button routerLink="/auth">auth</button>
     }
@@ -40,3 +43,9 @@
     <ng-content select="main" />
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- overlay -->
+<mat-menu #personMenu="matMenu">
+  <button mat-menu-item (click)="onLogout()">Logout</button>
+  <button mat-menu-item disabled>Settings</button>
+</mat-menu>
