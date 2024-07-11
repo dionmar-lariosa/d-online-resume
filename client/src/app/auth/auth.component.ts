@@ -76,7 +76,7 @@ export class AuthComponent {
       next: (data) => {
         localStorage.setItem('user', JSON.stringify(data));
         this.authStore.init(data);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['resume']);
       },
       complete: () => {
         this.loginForm.enable();
