@@ -1,5 +1,9 @@
 <mat-toolbar>
   <span>d' online resume</span>
   <span class="example-spacer"></span>
+  @if (authStore.access_token()) {
+  <button mat-button (click)="onLogout()">logout</button>
+  } @else {
   <button mat-button routerLink="/auth">auth</button>
+  }
 </mat-toolbar>
